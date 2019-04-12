@@ -43,7 +43,7 @@ Dictionary: theoretical prices and the Greeks for European style call and put op
 
 ![Screenshot](/png/opt_calc_output.png)
 
-## Options Strategies
+## Options Strategy Analyzing Tool
 Calculates the Expected Result (ER) of options strategies based on different strike prices. Trades with positive expected results are selected and these trade opportunities are sorted from the highest ER to the lowest.
 
 ### Usage Example
