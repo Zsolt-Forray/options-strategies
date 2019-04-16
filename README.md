@@ -1,5 +1,9 @@
 # options-strategies
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/97645bd4d71b41e5a175cd2d10465a11)](https://www.codacy.com/app/forray.zsolt/options-strategies?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Zsolt-Forray/options-strategies&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9e82e1deaf69630075cc/maintainability)](https://codeclimate.com/github/Zsolt-Forray/options-strategies/maintainability)
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
 ## Description
 This project includes options calculator and options strategy analyzing tool:
 
