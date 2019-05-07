@@ -26,6 +26,7 @@ Remark: Input parameters must be separated by comma(s).
 import math as m
 from scipy.stats import norm as nd
 from decimal import Decimal
+import sys
 
 class InvalidDataError(Exception):
     pass
@@ -116,16 +117,23 @@ class OptionPricing(object):
         put_rho = put_rho / 100
         return put_rho
 
-def run(S, K, DTE, IV, r):
-
+def check_input(S, K, DTE, IV, r):
     try:
-        if (S < 20.0 or S > 200.0)\
-            or (K < 20.0 or K > 200.0)\
-            or (DTE < 1.0 or DTE > 360.0)\
-            or (IV < 10.0 or IV > 150.0)\
-            or (r < 1.0 or r > 4.0):
+        if (20.0 <= S <= 200.0) and (20.0 <= K <= 200.0)\
+            and (1.0 <= DTE <= 360.0) and (10.0 <= IV <= 150.0)\
+            and (1.0 <= r <= 4.0):
+            return True
+        else:
             raise InvalidDataError()
+    except InvalidDataError:
+        print("[Error] Input parameter(s) out of range")
+        sys.exit(1)
+    except Exception:
+        print("[Error] Invalid input parameter(s)")
+        sys.exit(1)
 
+def run(S, K, DTE, IV, r):
+    if check_input(S, K, DTE, IV, r) == True:
         op = OptionPricing(S, K, DTE, IV, r)
 
         res_dict = {
@@ -146,11 +154,8 @@ def run(S, K, DTE, IV, r):
                             "rho": round(Decimal(op.put_rho()),4),
                             },
                     }
-
+                    
         return res_dict
-
-    except InvalidDataError:
-        print("[Error] Input parameter(s) out of range")
 
 
 if __name__ == "__main__":
