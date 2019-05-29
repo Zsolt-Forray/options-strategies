@@ -16,8 +16,8 @@ Strategy: Options Strategies
                     "bull_call_spread"
                     "bull_put_spread"
 
-Options Pricing Parameters
---------------------------
+Options Pricing Parameters (suggested)
+------------------------------------------
 S: Price of the underlying asset (20-200).
 DTE: Number of days to expiration (1-360).
 IV: Estimated future volatility of a security's price (10-150).
@@ -94,9 +94,7 @@ def run_analyzing_tool(S0, DTE0, IV0, r, strategy, strike_list):
     for vals in strike_list:
         Klower = vals[0]
         Khigher = vals[1]
-
         strat_module = K_dict[strategy][0].run_strategy
-
         res_row = strat_module(S0, Klower, Khigher, DTE0, IV0, r, selected, strike_list, rng_stock)
 
         #---------------------------------------------------------
@@ -112,9 +110,7 @@ def run_analyzing_tool(S0, DTE0, IV0, r, strategy, strike_list):
 
     chart_data = None
     if len(res_list) > 0:
-
         selected = True
-
         selected_Klower = res_list[0][K_dict[strategy][2]]
         selected_Khigher = res_list[0][K_dict[strategy][3]]
 
@@ -125,7 +121,6 @@ def run_analyzing_tool(S0, DTE0, IV0, r, strategy, strike_list):
     else:
         msg = "[Info] No Strategy Found with Positive Expected Return (ER)"
         print(msg)
-
     return res_list, chart_data
 
 def display_result(chart_data, strategy):
@@ -139,31 +134,17 @@ def display_result(chart_data, strategy):
 
 def run(S, DTE, IV, r, strategy, chart=False):
     strategies = ["bull_call_spread", "bull_put_spread"]
-
     try:
         if strategy not in strategies:
             raise InvalidStrategyError()
-
-        if (S < 20.0 or S > 200.0)\
-            or (DTE < 1.0 or DTE > 360.0)\
-            or (IV < 10.0 or IV > 150.0)\
-            or (r < 1.0 or r > 4.0):
-            raise InvalidDataError()
-
         strike_pairs = create_strike_pairs(S, strategy)
-        res, chart_data = run_analyzing_tool(S, DTE, IV,
-                            r, strategy, strike_pairs)
+        res, chart_data = run_analyzing_tool(S, DTE, IV, r, strategy, strike_pairs)
 
         if chart_data != None and chart == True:
             display_result(chart_data, strategy)
-
         return res
 
     except InvalidStrategyError:
         print("[Error] Invalid strategy is selected")
     except InvalidDataError:
         print("[Error] Please check the input parameters")
-
-
-if __name__ == "__main__":
-    run(40,40,45,2,"bull_call_spread", True)
