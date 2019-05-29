@@ -22,8 +22,10 @@ def payoff(S0, Ksc, Klc, DTE0, IV0, r, strike_list, rng_stock):
     # Long / Short Call price calculation
     # lc0: long call price
     # sc0: short call price
-    lc0 = round(opbs.OptionPricing(*long_call_params0).call_price(),2)
-    sc0 = round(opbs.OptionPricing(*short_call_params0).call_price(),2)
+    objlc = opbs.OptionPricing(*long_call_params0)
+    objsc = opbs.OptionPricing(*short_call_params0)
+    lc0 = objlc.price()["call"]
+    sc0 = objsc.price()["call"]
 
     # Stock price range from the min/max strike price
     DISTANCE_FROM_STRIKE = rng_stock
