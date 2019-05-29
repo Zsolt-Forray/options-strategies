@@ -22,8 +22,10 @@ def payoff(S0, Klp, Ksp, DTE0, IV0, r, strike_list, rng_stock):
     # Long / Short Put price calculation
     # lp0: long put price
     # sp0: short put price
-    lp0 = round(opbs.OptionPricing(*long_put_params0).put_price(),2)
-    sp0 = round(opbs.OptionPricing(*short_put_params0).put_price(),2)
+    objlp = opbs.OptionPricing(*long_put_params0)
+    objsp = opbs.OptionPricing(*short_put_params0)
+    lp0 = objlp.price()["put"]
+    sp0 = objsp.price()["put"]
 
     # Stock price range from the min/max strike price
     DISTANCE_FROM_STRIKE = rng_stock
