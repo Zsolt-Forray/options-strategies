@@ -1,7 +1,6 @@
 import unittest
 import options_strategy_analyzing_framework as osf
 from options_strategy_analyzing_framework import InvalidDataError
-from options_strategy_analyzing_framework import InvalidStrategyError
 
 
 class TestFramework(unittest.TestCase):
