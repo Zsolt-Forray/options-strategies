@@ -13,12 +13,12 @@ Calculates the Expected Result (ER) of options strategies based on different str
 
 **Parameters (suggested):**
 
-* S: Stock Price (10-200)
-* DTE: Days to Expiration (1-360)
-* IV: Implied Volatility (%) (10-150)
-* rate: Risk-free Rate (%) (1-4)
-* strategy: There are 2 strategies available. Select one of them: `"bull_put_spread", "bull_call_spread"`.
-* chart: If `True`, the "Payoff diagram" is shown. The default is `False`.
+* S, Stock Price (10-200)
+* DTE, Days to Expiration (1-360)
+* IV, Implied Volatility (%) (10-150)
+* rate, Risk-free Rate (%) (1-4)
+* strategy, 2 strategies available, select one of them: `"bull_put_spread", "bull_call_spread"`
+* show_chart, if `True`, the "Payoff diagram" is shown, the default is `False`
 
 ```python
 #!/usr/bin/python3
