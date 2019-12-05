@@ -121,12 +121,12 @@ class ExpectedResult:
     def run_expected_result_calc(self):
         strategies = \
         {
-            "bull_call_spread"  : lambda : ExpectedResult.bull_call_ER\
-                            (self.S, self.high_K, self.bep, self.high_price, self.low_price,\
-                             self.period_vol, self.PR_list, self.Nx_list),
-            "bull_put_spread"   : lambda : ExpectedResult.bull_put_ER\
-                            (self.S, self.low_K, self.bep, self.high_price, self.low_price,\
-                             self.period_vol, self.PR_list, self.Nx_list),
+            "bull_call_spread"  : \
+            lambda : ExpectedResult.bull_call_ER(self.S, self.high_K, self.bep,\
+            self.high_price, self.low_price, self.period_vol, self.PR_list, self.Nx_list),
+            "bull_put_spread"   : \
+            lambda : ExpectedResult.bull_put_ER(self.S, self.low_K, self.bep,\
+            self.high_price, self.low_price, self.period_vol, self.PR_list, self.Nx_list),
         }
         return strategies[self.strategy]()
 
@@ -166,10 +166,12 @@ class GainLoss():
     def run_gain_loss_calc(self):
         strategies = \
         {
-            "bull_call_spread"  : lambda : GainLoss.bull_call_gain_loss\
-                            (self.high_K, self.bep, self.high_price, self.low_price),
-            "bull_put_spread"   : lambda : GainLoss.bull_put_gain_loss\
-                            (self.low_K, self.bep, self.high_price, self.low_price),
+            "bull_call_spread"  : \
+            lambda : GainLoss.bull_call_gain_loss(self.high_K, self.bep,\
+                                                  self.high_price, self.low_price),
+            "bull_put_spread"   : \
+            lambda : GainLoss.bull_put_gain_loss(self.low_K, self.bep,\
+                                                 self.high_price, self.low_price),
         }
         return strategies[self.strategy]()
 
