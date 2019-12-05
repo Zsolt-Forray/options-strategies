@@ -10,8 +10,8 @@ Options Strategy Analyzing Framework
 
 The best options strategy is selected based on the largest Expected Result (ER).
 
-| Input parameter(s):   S, DTE, IV, rate, strategy, chart
-|                       eg. 40.0, 30.0, 40.0, 2.5136, "bull_call_spread", True
+| Input parameter(s):   S, DTE, IV, rate, strategy, show_chart
+|                       eg. 40.0, 30.0, 40.0, 2.5136, "bull_put_spread", True
 
 Strategy: Currently Available Spread Options Strategies
                                 "bull_call_spread"
@@ -19,11 +19,11 @@ Strategy: Currently Available Spread Options Strategies
 
 Options Pricing Parameters (suggested)
 ------------------------------------------
-S:      Price of the underlying asset (10-200).
-DTE:    Number of days to expiration (1-360).
-IV:     Estimated future volatility of a security's price (10-150).
-rate:   Risk-free interest rate (1-4).
-chart:  If `True`, the "Payoff diagram" is shown.
+S:          Price of the underlying asset (10-200).
+DTE:        Number of days to expiration (1-360).
+IV:         Estimated future volatility of a security's price (10-150).
+rate:       Risk-free interest rate (1-4).
+show_chart: If `True`, the "Payoff diagram" is shown.
 
 | Output: Lists of trade opportunities having parameters as:
           0: Lower Strike
@@ -125,7 +125,7 @@ class Framework:
     def get_selected_best_result(self, res_list):
         """Select the best (the highest ER) trade for Payoff diagram"""
         chart_data = None
-        if self.show_chart == True:
+        if self.show_chart:
             selected_Klower = res_list[0][0]
             selected_Khigher = res_list[0][2]
             # Calculates the Profit/Loss curve for the selected trade
@@ -155,7 +155,7 @@ class Framework:
             res_list = self.get_all_results(strike_pairs)
             chart_data = self.get_selected_best_result(res_list)
 
-            if chart_data != None and self.show_chart == True:
+            if chart_data is not None and self.show_chart:
                 self.display_result(chart_data)
             return res_list
 
