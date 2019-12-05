@@ -131,10 +131,10 @@ class BreakEvenPoint:
     def run_bep(self):
         strategies = \
         {
-            "bull_call_spread"  : lambda : BreakEvenPoint.bull_call_bep\
-                            (self.low_K, self.high_price, self.low_price),
-            "bull_put_spread"   : lambda : BreakEvenPoint.bull_put_bep\
-                            (self.high_K, self.high_price, self.low_price),
+        "bull_call_spread"  : \
+        lambda : BreakEvenPoint.bull_call_bep(self.low_K, self.high_price, self.low_price),
+        "bull_put_spread"   : \
+        lambda : BreakEvenPoint.bull_put_bep(self.high_K, self.high_price, self.low_price),
         }
         return strategies[self.strategy]()
 
@@ -167,12 +167,12 @@ class Payoff:
     def run_payoff(self):
         strategies = \
         {
-            "bull_call_spread"  : lambda : Payoff.bull_call_payoff\
-                            (self.stock_price_arr, self.high_K, self.low_K,\
-                             self.bep, self.high_price, self.low_price),
-            "bull_put_spread"   : lambda : Payoff.bull_put_payoff\
-                            (self.stock_price_arr, self.high_K, self.low_K,\
-                             self.bep, self.high_price, self.low_price),
+            "bull_call_spread"  : \
+            lambda : Payoff.bull_call_payoff(self.stock_price_arr, self.high_K, self.low_K,\
+                                             self.bep, self.high_price, self.low_price),
+            "bull_put_spread"   : \
+            lambda : Payoff.bull_put_payoff(self.stock_price_arr, self.high_K, self.low_K,\
+                                            self.bep, self.high_price, self.low_price),
         }
         return strategies[self.strategy]()
 
